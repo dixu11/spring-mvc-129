@@ -5,6 +5,17 @@
     <title>Kreator portu</title>
 </head>
 <body>
-<h1>Dodaj port do wybranej planety:</h1>
+<h1>Wybuduj port na danej planecie:</h1>
+<label>Twoje fundusze: ...</label>
+<label>Koszt budowy portu: ...</label>
+<form action="/build-port" method="post">
+
+    <label>Nazwa planety:</label>
+    <input type="text" th:field="${request.planetName}">
+    <label>Poziom portu:</label>
+    <input type="number" th:field="${request.lvl}">
+
+    <button type="submit">Wybuduj / ulepsz port</button>
+</form>
 </body>
 </html>
