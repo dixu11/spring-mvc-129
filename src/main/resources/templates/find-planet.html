@@ -7,6 +7,19 @@
 
 <body>
 <h1>Oto znalezione planety:</h1>
+
+<form action="/find-planet" method="post">
+    <label>Wybierz typ planet:</label>
+    <br>
+    <label>Skalna</label>
+    <input type="radio" th:field="${request.planetType}" value="ROCK">
+    <label>Gazowa</label>
+    <input type="radio" th:field="${request.planetType}" value="GAS">
+    <br>
+    <button type="submit">Filtruj!</button>
+    <br>
+</form>
+
 <div th:each="planet : ${planets}">
     <div th:text="${planet.name}"></div>
 <!--    planet.name to tak naprawdę planet.getName()-->

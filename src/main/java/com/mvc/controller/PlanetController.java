@@ -3,6 +3,7 @@ package com.mvc.controller;
 import com.mvc.entity.Planet;
 import com.mvc.exception.PlanetServiceException;
 import com.mvc.request.PlanetCreationRequest;
+import com.mvc.request.PlanetFilterRequest;
 import com.mvc.responce.PlanetResponse;
 import com.mvc.service.PlanetService;
 import org.springframework.stereotype.Controller;
@@ -43,8 +44,16 @@ public class PlanetController {
     @GetMapping("/find-planet")
     public String getFindPlanetPage(Model model) {
        //czy na pewno encja w kontrolerze? architektura warstw!!
+        model.addAttribute("request", new PlanetFilterRequest());
         List<PlanetResponse> planets =  planetService.getAllPlanets();
         model.addAttribute("planets", planets);
+        return "find-planet";
+    }
+
+    @PostMapping("/find-planet")
+    public String filteredFindPlanetPage(
+            @ModelAttribute("request") PlanetFilterRequest request) {
+        System.out.println(request);
         return "find-planet";
     }
 }
