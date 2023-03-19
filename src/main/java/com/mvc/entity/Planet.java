@@ -42,6 +42,14 @@ public class Planet {
         return name;
     }
 
+    public PlanetType getType() {
+        return type;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
     @Override
     public String toString() {
         return "Planet{" +

@@ -5,6 +5,7 @@ import com.mvc.entity.PlanetType;
 import com.mvc.exception.PlanetServiceException;
 import com.mvc.repository.PlanetRepository;
 import com.mvc.request.PlanetCreationRequest;
+import com.mvc.responce.PlanetResponse;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +32,9 @@ public class PlanetService {
         repository.save(planet);
     }
 
-    public List<Planet> getAllPlanets() {
-      return repository.findAll();
+    public List<PlanetResponse> getAllPlanets() {
+       return repository.findAll().stream()
+                .map(p -> new PlanetResponse(p.getName(), p.getType(), p.getSize()))
+                .toList();
     }
 }
