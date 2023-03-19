@@ -29,7 +29,6 @@ public class AuthenticationController {
     @PostMapping("/create-imperator")
     public ModelAndView createImperator(@ModelAttribute("request") RegisterRequest request) {
         ModelAndView modelAndView = new ModelAndView("imperator-page");
-        modelAndView.addObject("request", request);
         try {
             service.createImperator(request);
             modelAndView.addObject("message", "Konto utworzone, podbijamy kosmos!");
