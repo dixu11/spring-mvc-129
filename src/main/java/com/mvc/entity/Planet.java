@@ -38,6 +38,10 @@ public class Planet {
         return Objects.hash(id, name, type, size);
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return "Planet{" +

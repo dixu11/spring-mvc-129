@@ -7,6 +7,9 @@
 
 <body>
 <h1>Oto znalezione planety:</h1>
-...
+<div th:each="planet : ${planets}">
+    <div th:text="${planet.name}"></div>
+<!--    planet.name to tak naprawdę planet.getName()-->
+</div>
 </body>
 </html>

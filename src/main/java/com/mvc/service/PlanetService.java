@@ -8,16 +8,17 @@ import com.mvc.request.PlanetCreationRequest;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-@Service
-public class PlanetService {
+import java.util.List;
 
+@Service
+@Transactional
+public class PlanetService {
     private PlanetRepository repository;
 
-    public PlanetService(PlanetRepository repository) {
+    public PlanetService(   PlanetRepository repository) {
         this.repository = repository;
     }
 
-    @Transactional
     public void createPlanet(PlanetCreationRequest request) {
         if (request.getName().isBlank()) {
             throw new PlanetServiceException("Nie uzupełniono nazwy!");
@@ -30,4 +31,7 @@ public class PlanetService {
         repository.save(planet);
     }
 
+    public List<Planet> getAllPlanets() {
+      return repository.findAll();
+    }
 }

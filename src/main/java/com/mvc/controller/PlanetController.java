@@ -1,5 +1,6 @@
 package com.mvc.controller;
 
+import com.mvc.entity.Planet;
 import com.mvc.exception.PlanetServiceException;
 import com.mvc.request.PlanetCreationRequest;
 import com.mvc.service.PlanetService;
@@ -39,8 +40,10 @@ public class PlanetController {
     }
 
     @GetMapping("/find-planet")
-    public String getFindPlanetPage() {
-      // List<Planet> planetService.getAllPlanets();
+    public String getFindPlanetPage(Model model) {
+       //czy na pewno encja w kontrolerze? architektura warstw!!
+        List<Planet> planets =  planetService.getAllPlanets();
+        model.addAttribute("planets", planets);
         return "find-planet";
     }
 }
