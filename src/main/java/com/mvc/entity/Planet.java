@@ -14,12 +14,12 @@ public class Planet {
     private String name;
     @Enumerated(value = EnumType.STRING)
     private PlanetType type;
-    private int size;
+    private int population;
 
-    public Planet(String name, PlanetType type, int size) {
+    public Planet(String name, PlanetType type, int population) {
         this.name = name;
         this.type = type;
-        this.size = size;
+        this.population = population;
     }
 
     public Planet() {
@@ -30,12 +30,12 @@ public class Planet {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Planet planet = (Planet) o;
-        return id == planet.id && size == planet.size && Objects.equals(name, planet.name) && type == planet.type;
+        return id == planet.id && population == planet.population && Objects.equals(name, planet.name) && type == planet.type;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, type, size);
+        return Objects.hash(id, name, type, population);
     }
 
     public String getName() {
@@ -46,8 +46,8 @@ public class Planet {
         return type;
     }
 
-    public int getSize() {
-        return size;
+    public int getPopulation() {
+        return population;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class Planet {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", type=" + type +
-                ", size=" + size +
+                ", size=" + population +
                 '}';
     }
 }

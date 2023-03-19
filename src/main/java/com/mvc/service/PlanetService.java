@@ -34,14 +34,14 @@ public class PlanetService {
 
     public List<PlanetResponse> getAllPlanets() {
        return repository.findAll().stream()
-                .map(p -> new PlanetResponse(p.getName(), p.getType(), p.getSize()))
+                .map(p -> new PlanetResponse(p.getName(), p.getType(), p.getPopulation()))
                 .toList();
     }
 
     public List<PlanetResponse> getPlanets(PlanetFilterRequest filterRequest) {
         PlanetType type = PlanetType.valueOf(filterRequest.getPlanetType());
         return repository.findByType(type).stream()
-                .map(p -> new PlanetResponse(p.getName(), p.getType(), p.getSize()))
+                .map(p -> new PlanetResponse(p.getName(), p.getType(), p.getPopulation()))
                 .toList();
     }
 }
