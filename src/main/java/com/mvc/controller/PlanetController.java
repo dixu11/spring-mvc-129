@@ -52,8 +52,10 @@ public class PlanetController {
 
     @PostMapping("/find-planet")
     public String filteredFindPlanetPage(
-            @ModelAttribute("request") PlanetFilterRequest request) {
-        System.out.println(request);
+            @ModelAttribute("request") PlanetFilterRequest request,
+            Model model) {
+        List<PlanetResponse> planets =  planetService.getPlanets(request);
+        model.addAttribute("planets", planets);
         return "find-planet";
     }
 }
