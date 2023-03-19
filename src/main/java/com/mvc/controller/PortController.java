@@ -20,7 +20,6 @@ public class PortController {
 
     @PostMapping("/build-port")
     public String buildPort(@ModelAttribute("request") BuildPortRequest request, Model model) {
-        System.out.println(request);
         model.addAttribute("message", "Port lvl "+request.getLvl()+"  dodany!");
         return "imperator-page";
     }
