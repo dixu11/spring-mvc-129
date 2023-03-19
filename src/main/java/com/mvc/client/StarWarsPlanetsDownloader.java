@@ -1,10 +1,14 @@
 package com.mvc.client;
 
+import com.mvc.entity.Planet;
+import com.mvc.entity.PlanetType;
 import com.mvc.repository.PlanetRepository;
 import jakarta.annotation.PostConstruct;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class StarWarsPlanetsDownloader {
@@ -26,5 +30,16 @@ public class StarWarsPlanetsDownloader {
         }
         //getForObject zrobi zapytanie do api i jeszcze skonwertuje rezultat do obiektu wskazanej klasy
         StarWarsPlanetsResponse response = template.getForObject(URL, StarWarsPlanetsResponse.class);
+        List<Planet> planets = new ArrayList<>();
+        for (StarWarsPlanetResponse swPlanet : response.getResults()) {
+            Planet planet = new Planet(
+                    swPlanet.getName(),
+                    PlanetType.ROCK,
+                    swPlanet.getPopulation()
+            );
+            planets.add(planet);
+        }
+        repository.saveAll(planets);
+
     }
 }

@@ -3,12 +3,12 @@ package com.mvc.request;
 public class PlanetCreationRequest {
     private String name;
     private String type;
-    private int size;
+    private long population;
 
-    public PlanetCreationRequest(String name, String type, int size) {
+    public PlanetCreationRequest(String name, String type, long population) {
         this.name = name;
         this.type = type;
-        this.size = size;
+        this.population = population;
     }
 
     public String getName() {
@@ -19,8 +19,8 @@ public class PlanetCreationRequest {
         return type;
     }
 
-    public int getSize() {
-        return size;
+    public long getPopulation() {
+        return population;
     }
 
     @Override
@@ -28,7 +28,7 @@ public class PlanetCreationRequest {
         return "PlanetCreationRequest{" +
                 "name='" + name + '\'' +
                 ", type='" + type + '\'' +
-                ", size=" + size +
+                ", size=" + population +
                 '}';
     }
 }

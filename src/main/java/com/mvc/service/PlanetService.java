@@ -23,12 +23,12 @@ public class PlanetService {
     public void createPlanet(PlanetCreationRequest request) {
         if (request.getName().isBlank()) {
             throw new PlanetServiceException("Nie uzupełniono nazwy!");
-        } else if (request.getSize()<= 0) {
+        } else if (request.getPopulation()<= 0) {
             throw new PlanetServiceException("Rozmiar planety min. 1");
         }
 
         PlanetType type = PlanetType.valueOf(request.getType());
-        Planet planet = new Planet(request.getName(), type, request.getSize());
+        Planet planet = new Planet(request.getName(), type, request.getPopulation());
         repository.save(planet);
     }
 

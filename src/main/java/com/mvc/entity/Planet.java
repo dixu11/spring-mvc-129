@@ -14,9 +14,9 @@ public class Planet {
     private String name;
     @Enumerated(value = EnumType.STRING)
     private PlanetType type;
-    private int population;
+    private long population;
 
-    public Planet(String name, PlanetType type, int population) {
+    public Planet(String name, PlanetType type, long population) {
         this.name = name;
         this.type = type;
         this.population = population;
@@ -46,7 +46,7 @@ public class Planet {
         return type;
     }
 
-    public int getPopulation() {
+    public long getPopulation() {
         return population;
     }
 
@@ -56,7 +56,7 @@ public class Planet {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", type=" + type +
-                ", size=" + population +
+                ", population=" + population +
                 '}';
     }
 }

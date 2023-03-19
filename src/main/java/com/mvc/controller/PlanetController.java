@@ -30,10 +30,10 @@ public class PlanetController {
     @PostMapping("/add-planet")
     public String createPlanet(@RequestParam String name,
                                @RequestParam(name = "planet_type") String planetType,
-                               @RequestParam int size,
+                               @RequestParam long population,
                                Model model) {
         try {
-            planetService.createPlanet(new PlanetCreationRequest(name, planetType, size));
+            planetService.createPlanet(new PlanetCreationRequest(name, planetType, population));
             model.addAttribute("message", "Dodano plantę o nazwie: " + name);
         } catch (PlanetServiceException e) {
             model.addAttribute("message", e.getMessage());

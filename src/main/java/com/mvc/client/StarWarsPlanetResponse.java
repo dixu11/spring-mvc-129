@@ -12,7 +12,7 @@ public class StarWarsPlanetResponse {
         return name;
     }
 
-    public String getPopulation() {
-        return population;
+    public long getPopulation() {
+        return population.equals("unknown") ? 0 : Long.parseLong(population);
     }
 }
