@@ -4,6 +4,7 @@ import com.mvc.entity.Planet;
 import com.mvc.entity.PlanetType;
 import com.mvc.repository.PlanetRepository;
 import jakarta.annotation.PostConstruct;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@Slf4j
 public class StarWarsPlanetsDownloader {
 
     private static final String URL = "https://swapi.dev/api/planets/?page=%d";
@@ -49,5 +51,7 @@ public class StarWarsPlanetsDownloader {
             planets.add(planet);
         }
         repository.saveAll(planets);
+        log.warn("abc");
+        log.error("aaa");
     }
 }
