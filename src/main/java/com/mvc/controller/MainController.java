@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MainController {
 
-    @RequestMapping(path = "/imperator",method = RequestMethod.GET)
+    @RequestMapping(path = "/",method = RequestMethod.GET)
 //    @GetMapping("/imperator")
     public ModelAndView getImperatorPage() {
         ModelAndView modelAndView = new ModelAndView("imperator-page.html");

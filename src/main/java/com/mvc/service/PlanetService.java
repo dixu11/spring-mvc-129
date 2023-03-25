@@ -1,8 +1,10 @@
 package com.mvc.service;
 
+import com.mvc.entity.Imperator;
 import com.mvc.entity.Planet;
 import com.mvc.entity.PlanetType;
 import com.mvc.exception.PlanetServiceException;
+import com.mvc.repository.ImperatorRepository;
 import com.mvc.repository.PlanetRepository;
 import com.mvc.request.PlanetCreationRequest;
 import com.mvc.request.PlanetFilterRequest;
@@ -16,10 +18,12 @@ import java.util.List;
 @Service
 @Transactional
 public class PlanetService {
-    private PlanetRepository repository;
+    private PlanetRepository planetRepository;
+    private ImperatorRepository imperatorRepository;
 
-    public PlanetService(   PlanetRepository repository) {
-        this.repository = repository;
+    public PlanetService(PlanetRepository planetRepository, ImperatorRepository imperatorRepository) {
+        this.planetRepository = planetRepository;
+        this.imperatorRepository = imperatorRepository;
     }
 
     public void createPlanet(PlanetCreationRequest request) {
@@ -36,18 +40,24 @@ public class PlanetService {
         //StarWarsPlanetResponse -> odpowiada za pobrane dane o planecie i oddaje strukture jsona
         //Planet -> odpowiada za dane przechowywane planety i oddaje strukture tabeli
         Planet planet = new Planet(request.getName(), type, request.getPopulation());
-        repository.save(planet);
+
+        //planeta zostaje przypisana do imperatora
+        //wyciągamy zalogowanego imperatora
+        Imperator imperator = imperatorRepository.findById("test").orElseThrow();
+        imperator.addPlanet(planet);
+        planetRepository.save(planet);
+        imperatorRepository.save(imperator);
     }
 
     public List<PlanetResponse> getAllPlanets() {
-       return repository.findAll().stream()
+       return planetRepository.findAll().stream()
                 .map(p -> new PlanetResponse(p.getName(), p.getType(), p.getPopulation()))
                 .toList();
     }
 
     public List<PlanetResponse> getPlanets(PlanetFilterRequest filterRequest) {
         PlanetType type = PlanetType.valueOf(filterRequest.getPlanetType());
-        return repository.findByType(type).stream()
+        return planetRepository.findByType(type).stream()
                 .map(p -> new PlanetResponse(p.getName(), p.getType(), p.getPopulation()))
                 .toList();
     }
@@ -56,7 +66,7 @@ public class PlanetService {
     public List<PlanetResponse> getTop3PopulatedPlanets() {
 //        List<Planet> planets = repository.findTop3ByOrderByPopulationDesc();
 //        List<Planet> planets = repository.findTop3();
-        List<Planet> planets = repository.findTop3OnEntityManager();
+        List<Planet> planets = planetRepository.findTop3OnEntityManager();
         //z bazy danych dostajemy obiekty Planet - które przechowują dane z tabeli SQL
 
         //nie wszystkie z tych danych są potrzebne w HTML, przygotujemy więc na ich bazie obiekty reprezentujace

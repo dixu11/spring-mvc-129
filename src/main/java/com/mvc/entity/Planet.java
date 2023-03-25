@@ -21,6 +21,9 @@ public class Planet {
     @OneToOne
     @Cascade(CascadeType.ALL) //powoduje że wszystkie operacje na Planet są transferowane na Port np. save, delete, update...
     private Port port = null;
+    @ManyToOne
+    @JoinColumn(name = "imperator_id")
+    private Imperator imperator;
 
     public Planet(String name, PlanetType type, long population) {
         this.name = name;
@@ -38,6 +41,11 @@ public class Planet {
         Planet planet = (Planet) o;
         return id == planet.id && population == planet.population && Objects.equals(name, planet.name) && type == planet.type;
     }
+
+    public void setImperator(Imperator imperator) {
+        this.imperator = imperator;
+    }
+
 
     @Override
     public int hashCode() {

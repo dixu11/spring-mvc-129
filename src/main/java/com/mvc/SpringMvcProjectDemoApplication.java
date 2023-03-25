@@ -20,6 +20,7 @@ public class SpringMvcProjectDemoApplication {
 * Plan:
 * można wytworzyć port
 * port jest przypisany do konkretnej planety
+*
 * imperator za bardzo dużą cenę może również wytworzyć planete która od razu będzie jego
 * żeby wytworzyć port trzeba być zalogowanym na konkretnego imperatora
 * imperator może wytworzyć port wyłącznie na posiadanej planecie
