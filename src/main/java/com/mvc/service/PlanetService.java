@@ -39,9 +39,12 @@ public class PlanetService {
     }
 
     public List<PlanetResponse> getPlanets(PlanetFilterRequest filterRequest) {
-        PlanetType type = PlanetType.valueOf(filterRequest.getPlanetType());
-        return repository.findByType(type).stream()
+        return repository.populated().stream()
                 .map(p -> new PlanetResponse(p.getName(), p.getType(), p.getPopulation()))
                 .toList();
+      /*  PlanetType type = PlanetType.valueOf(filterRequest.getPlanetType());
+        return repository.findByType(type).stream()
+                .map(p -> new PlanetResponse(p.getName(), p.getType(), p.getPopulation()))
+                .toList();*/
     }
 }
