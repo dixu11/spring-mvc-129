@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 //możemy dorzucić swoje implementacje poprzez podpięcie dodatkowych ZAIMPLEMENTOWANYCH interfejsów (CustomPlanetRepository)
 public interface PlanetRepository extends JpaRepository<Planet,Long>,CustomPlanetRepository { // JpaRepository - zawiera CrudRepository
@@ -30,5 +31,6 @@ public interface PlanetRepository extends JpaRepository<Planet,Long>,CustomPlane
     //nazwa metody w tym podejściu zostaje zignorowana a JPA bierze pod uwagę przekazy kod HQL
     //w HQL wykorzystujemy nazwy klas i nazwy pól a nie tabel i kolumn
 
+    Optional<Planet> findByName(String name);
 
 }

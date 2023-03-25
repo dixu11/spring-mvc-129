@@ -53,6 +53,9 @@ public class Planet {
         return population;
     }
 
+    public void setPort(Port port) {
+        this.port = port;
+    }
 
     @Override
     public String toString() {

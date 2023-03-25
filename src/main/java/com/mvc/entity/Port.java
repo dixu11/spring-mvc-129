@@ -12,6 +12,10 @@ public class Port {
     private long id;
     private int lvl;
 
+    public Port(int lvl) {
+        this.lvl = lvl;
+    }
 
-
+    public Port() {
+    }
 }
