@@ -3,6 +3,7 @@ package com.mvc.repository;
 import com.mvc.entity.Planet;
 import com.mvc.entity.PlanetType;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -18,7 +19,15 @@ public interface PlanetRepository extends JpaRepository<Planet,Long> { // JpaRep
 
 
     //top3 planety pod względem populacji malejąco
-    List<Planet> findTop3ByOrderByPopulationDesc();
+    //List<Planet> findTop3ByOrderByPopulationDesc();
+
+    //składnia tej metody wynika z wykorzystania słów kluczowych zdefiniowanych w dokumentacji JPA ( można też poszukać tutoriali)
+    //https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.limit-query-result
+
+    @Query("from Planet p order by p.population desc limit 3")
+    List<Planet> findTop3();
+    //nazwa metody w tym podejściu zostaje zignorowana a JPA bierze pod uwagę przekazy kod HQL
+    //w HQL wykorzystujemy nazwy klas i nazwy pól a nie tabel i kolumn
 
 
 }

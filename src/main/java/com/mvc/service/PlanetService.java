@@ -54,7 +54,8 @@ public class PlanetService {
 
 
     public List<PlanetResponse> getTop3PopulatedPlanets() {
-        List<Planet> planets = repository.findTop3ByOrderByPopulationDesc();
+//        List<Planet> planets = repository.findTop3ByOrderByPopulationDesc();
+        List<Planet> planets = repository.findTop3();
         //z bazy danych dostajemy obiekty Planet - które przechowują dane z tabeli SQL
 
         //nie wszystkie z tych danych są potrzebne w HTML, przygotujemy więc na ich bazie obiekty reprezentujace
