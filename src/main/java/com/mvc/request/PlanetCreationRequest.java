@@ -1,6 +1,7 @@
 package com.mvc.request;
 
 public class PlanetCreationRequest {
+
     private String name;
     private String type;
     private long population;

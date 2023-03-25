@@ -15,7 +15,6 @@ public class Planet {
     @Enumerated(value = EnumType.STRING)
     private PlanetType type;
     private long population;
-
     public Planet(String name, PlanetType type, long population) {
         this.name = name;
         this.type = type;
