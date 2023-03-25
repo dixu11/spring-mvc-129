@@ -11,10 +11,14 @@ public class Planet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(unique = true)
     private String name;
     @Enumerated(value = EnumType.STRING)
     private PlanetType type;
     private long population;
+    @OneToOne
+    private Port port = null;
+
     public Planet(String name, PlanetType type, long population) {
         this.name = name;
         this.type = type;
@@ -48,6 +52,7 @@ public class Planet {
     public long getPopulation() {
         return population;
     }
+
 
     @Override
     public String toString() {

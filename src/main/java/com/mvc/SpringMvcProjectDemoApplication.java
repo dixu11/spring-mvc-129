@@ -13,7 +13,15 @@ public class SpringMvcProjectDemoApplication {
 		//@Comonent -> dla naszych klas
 		//@Bean -> dla klas których nie możemy edytować np. Scanner, RestTemplate, ObjectMapper itp
 		//W komponentach wykorzystywany jest domyślnie konstruktor -> wstrzykiwanie zależności!
-
 	}
-
 }
+
+/*
+* Plan:
+* można wytworzyć port
+* port jest przypisany do konkretnej planety
+* imperator za bardzo dużą cenę może również wytworzyć planete która od razu będzie jego
+* żeby wytworzyć port trzeba być zalogowanym na konkretnego imperatora
+* imperator może wytworzyć port wyłącznie na posiadanej planecie
+* podczas kupowania portu trzeba zapłacić (potrąca kredyty)
+* */
