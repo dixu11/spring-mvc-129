@@ -6,6 +6,7 @@ import com.mvc.request.PlanetCreationRequest;
 import com.mvc.request.PlanetFilterRequest;
 import com.mvc.responce.PlanetResponse;
 import com.mvc.service.PlanetService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import java.util.List;
 public class PlanetController {
 
     private PlanetService planetService;
+
 
     public PlanetController(PlanetService planetService) {
         this.planetService = planetService;
