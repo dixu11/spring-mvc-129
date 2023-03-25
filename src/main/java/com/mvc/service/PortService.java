@@ -28,10 +28,14 @@ public class PortService {
                 .orElseThrow(); //fajnie by było dodać własny wyjątek i obsługę w Controllerze
         //stwórz port
         Port port = new Port(request.getLvl());
+        //zapisać port do bazy
+        //bez kaskadowości muszę najpierw zapisać port a dopiero potem mogę na niego wskazywać przez planetę
+        //portRepository.save(port); // zakomentowane bo korzystam z kaskadowości operacji save
+
         //dodaj jej port
         planet.setPort(port);
         //zapisz
-        planetRepository.save(planet);
+        planetRepository.save(planet); // save zapisze również port
     }
 
 }

@@ -1,6 +1,8 @@
 package com.mvc.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
+import  org.hibernate.annotations.CascadeType;
 
 import java.util.Objects;
 
@@ -17,6 +19,7 @@ public class Planet {
     private PlanetType type;
     private long population;
     @OneToOne
+    @Cascade(CascadeType.ALL) //powoduje że wszystkie operacje na Planet są transferowane na Port np. save, delete, update...
     private Port port = null;
 
     public Planet(String name, PlanetType type, long population) {
