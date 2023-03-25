@@ -9,6 +9,8 @@ import com.mvc.request.PlanetFilterRequest;
 import com.mvc.responce.PlanetResponse;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -48,5 +50,26 @@ public class PlanetService {
         return repository.findByType(type).stream()
                 .map(p -> new PlanetResponse(p.getName(), p.getType(), p.getPopulation()))
                 .toList();
+    }
+
+
+    public List<PlanetResponse> getTop3PopulatedPlanets() {
+        List<Planet> planets = repository.findTop3ByOrderByPopulationDesc();
+        //z bazy danych dostajemy obiekty Planet - które przechowują dane z tabeli SQL
+
+        //nie wszystkie z tych danych są potrzebne w HTML, przygotujemy więc na ich bazie obiekty reprezentujace
+        //planety w kontekście widoku html - PlanetResponse
+        //zachowujemy również dzięki temu wyraźną granicę architektoniczną:
+        // w serwisach używamy encji bazodanowych
+        // w controllerach używamy obiektów Request i Responce i nie mamy kontaktu ze strukturą bazy
+
+        List<PlanetResponse> planetsResponse = new ArrayList<>();
+        for (Planet planet : planets) {
+            PlanetResponse planetResponse = new PlanetResponse(planet.getName(), planet.getType(), planet.getPopulation());
+            planetsResponse.add(planetResponse);
+        }
+
+        return planetsResponse;
+
     }
 }

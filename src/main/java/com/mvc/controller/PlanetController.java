@@ -45,9 +45,9 @@ public class PlanetController {
 
     @GetMapping("/find-planet")
     public String getFindPlanetPage(Model model) {
-       //czy na pewno encja w kontrolerze? architektura warstw!!
+        //czy na pewno encja w kontrolerze? architektura warstw!!
         model.addAttribute("request", new PlanetFilterRequest());
-        List<PlanetResponse> planets =  planetService.getAllPlanets();
+        List<PlanetResponse> planets = planetService.getAllPlanets();
         model.addAttribute("planets", planets);
         return "find-planet";
     }
@@ -56,8 +56,18 @@ public class PlanetController {
     public String filteredFindPlanetPage(
             @ModelAttribute("request") PlanetFilterRequest request,
             Model model) {
-        List<PlanetResponse> planets =  planetService.getPlanets(request);
+        List<PlanetResponse> planets = planetService.getPlanets(request);
         model.addAttribute("planets", planets);
         return "find-planet";
+    }
+
+    @GetMapping("/top-populated")
+    public String findTopPopulated(Model model) {
+       List<PlanetResponse> planets = planetService.getTop3PopulatedPlanets();
+       //od planetService oczekujemy obiektów PlanetResponse czyli tych przedstawiających jakie dane na temat planety
+        //chcemy pokazać. Nie muszą to być wszystkie dane planety z bazy danych dlatego tutaj nie używamy obiektu Planet
+       //bo jest on encją bazodanową
+        model.addAttribute("planets", planets);
+        return "find-top-populated"; //todo implement html
     }
 }

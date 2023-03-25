@@ -19,10 +19,12 @@
     <button type="submit">Filtruj!</button>
     <br>
 </form>
-
-<div th:each="planet : ${planets}">
-    <div th:text="${planet.name}"></div>
-<!--    planet.name to tak naprawdę planet.getName()-->
-</div>
+<table>
+    <tr th:each="planet : ${planets}">
+        <th th:text="${planet.name}"></th>
+        <th th:text="${planet.population}"></th>
+        <!--    planet.name to tak naprawdę planet.getName()-->
+    </tr>
+</table>
 </body>
 </html>

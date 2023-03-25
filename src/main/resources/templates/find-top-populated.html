@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Top 3 planety pod względem populacji</h1>
+
+<table>
+  <tr th:each="planet:${planets}">
+    <th th:text="${planet.name}"></th>
+    <th th:text="${planet.population}"></th>
+  </tr>
+</table>
+
+
+</body>
+</html>

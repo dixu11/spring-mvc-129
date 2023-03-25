@@ -12,7 +12,13 @@ public interface PlanetRepository extends JpaRepository<Planet,Long> { // JpaRep
     //pomaga to ustawić odpowiednie parametry metodom JPA np save()
 
     List<Planet> findByType(PlanetType type);
+    //metoda generowana "w locie" przez Spring JPA. Spring "skanuje" metody po ich nazwach i ustawionych typach
+    // wykorzystując do tego refleksje i sam przygotowuje odpowiednią implementację tego interfejsu, która zostanie
+    // wstrzyknięta
 
+
+    //top3 planety pod względem populacji malejąco
+    List<Planet> findTop3ByOrderByPopulationDesc();
 
 
 }
