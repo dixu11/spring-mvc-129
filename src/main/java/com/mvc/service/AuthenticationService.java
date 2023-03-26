@@ -3,11 +3,13 @@ package com.mvc.service;
 import com.mvc.entity.Imperator;
 import com.mvc.exception.AuthenticationServiceException;
 import com.mvc.repository.ImperatorRepository;
+import com.mvc.request.LoginRequest;
 import com.mvc.request.RegisterRequest;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class AuthenticationService {
     private ImperatorRepository imperatorRepository;
 
@@ -15,7 +17,7 @@ public class AuthenticationService {
         this.imperatorRepository = imperatorRepository;
     }
 
-    @Transactional
+
     public void createImperator(RegisterRequest request) {
         if (request.getPassword1().length() <= 5) {
             throw new AuthenticationServiceException("Hasło minimum 6 znaków!");
@@ -30,5 +32,15 @@ public class AuthenticationService {
         Imperator imperator = new Imperator(request.getImperatorName(), request.getPassword1());
         imperatorRepository.save(imperator);
     }
+
+    public void loginImperator(LoginRequest loginRequest) {
+        Imperator imperator = imperatorRepository.findById(loginRequest.getName())
+                .orElseThrow(()->new AuthenticationServiceException("Imperator o takiej nazwie nie istnieje!"));
+
+        if (!loginRequest.getPassword().equals(imperator.getPassword())) {
+            throw new AuthenticationServiceException("Hasło się nie zgadza!");
+        }
+    }
+
 
 }

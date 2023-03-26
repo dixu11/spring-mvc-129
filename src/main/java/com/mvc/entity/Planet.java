@@ -34,22 +34,8 @@ public class Planet {
     public Planet() {
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Planet planet = (Planet) o;
-        return id == planet.id && population == planet.population && Objects.equals(name, planet.name) && type == planet.type;
-    }
-
     public void setImperator(Imperator imperator) {
         this.imperator = imperator;
-    }
-
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, type, population);
     }
 
     public String getName() {
@@ -66,6 +52,19 @@ public class Planet {
 
     public void setPort(Port port) {
         this.port = port;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Planet planet = (Planet) o;
+        return id == planet.id && population == planet.population && Objects.equals(name, planet.name) && type == planet.type && Objects.equals(port, planet.port) && Objects.equals(imperator, planet.imperator);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, type, population, port, imperator);
     }
 
     @Override

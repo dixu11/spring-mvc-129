@@ -9,8 +9,10 @@ import com.mvc.repository.PlanetRepository;
 import com.mvc.request.PlanetCreationRequest;
 import com.mvc.request.PlanetFilterRequest;
 import com.mvc.responce.PlanetResponse;
+import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +27,21 @@ public class PlanetService {
         this.planetRepository = planetRepository;
         this.imperatorRepository = imperatorRepository;
     }
+
+
+    //METODA DO PRZETESTOWANIA REMOVE PLANET - remove ArrayListy nie zadziała poprawnie bez equals + hashcode
+    //jeśli domyślne LazyLoading sprawia problemy możemy rozważyć przestawienie relacji na Eager
+   // @PostConstruct
+   // @Transactional
+    public void removePlanet() {
+        Imperator imperator = imperatorRepository.findById("test").orElseThrow();
+        Planet planet = planetRepository.findById(62L).orElseThrow();
+        imperator.removePlanet(planet);
+        planetRepository.save(planet);
+    }
+
+
+
 
     public void createPlanet(PlanetCreationRequest request) {
         if (request.getName().isBlank()) {

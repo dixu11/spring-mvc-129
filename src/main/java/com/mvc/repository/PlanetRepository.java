@@ -21,7 +21,7 @@ public interface PlanetRepository extends JpaRepository<Planet,Long>,CustomPlane
 
 
     //top3 planety pod względem populacji malejąco
-    //List<Planet> findTop3ByOrderByPopulationDesc();
+    List<Planet> findTop3ByOrderByPopulationDesc();
 
     //składnia tej metody wynika z wykorzystania słów kluczowych zdefiniowanych w dokumentacji JPA ( można też poszukać tutoriali)
     //https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.limit-query-result
