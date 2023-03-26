@@ -52,4 +52,12 @@ public class Imperator {
     public String getPassword() {
         return password;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getCredits() {
+        return credits;
+    }
 }
