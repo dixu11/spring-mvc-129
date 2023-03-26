@@ -16,6 +16,7 @@ public class SessionDemoController {
     private AuthenticationService service;
 
     @Resource(name="mySession")
+    //
     private ImperatorSession imperatorSession;
 
 

@@ -6,6 +6,8 @@ import com.mvc.repository.ImperatorRepository;
 import com.mvc.request.LoginRequest;
 import com.mvc.request.RegisterRequest;
 import com.mvc.responce.ImperatorResponse;
+import com.mvc.session.ImperatorSession;
+import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +17,10 @@ import java.util.Optional;
 @Transactional
 public class AuthenticationService {
     private ImperatorRepository imperatorRepository;
-    private Imperator loggedImperator;
+    private Imperator loggedImperator; // TRAGICZNIE ZŁE ROZWIĄZANIE - SERWISY POWINNY BYĆ BEZSTANOWE
+
+//    @Resource(name = "mySession")
+//    private ImperatorSession imperatorSession;
 
     public AuthenticationService(ImperatorRepository imperatorRepository) {
         this.imperatorRepository = imperatorRepository;
@@ -47,6 +52,7 @@ public class AuthenticationService {
         }
 
         loggedImperator = imperator;
+        //imperatorSession.setName(imperator.getName());
 
     }
 
