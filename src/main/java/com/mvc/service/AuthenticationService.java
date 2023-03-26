@@ -34,11 +34,12 @@ public class AuthenticationService {
     }
 
     public void loginImperator(LoginRequest loginRequest) {
+        String errorMassage = "Podano złe dane";
         Imperator imperator = imperatorRepository.findById(loginRequest.getName())
-                .orElseThrow(()->new AuthenticationServiceException("Imperator o takiej nazwie nie istnieje!"));
+                .orElseThrow(()->new AuthenticationServiceException(errorMassage));
 
         if (!loginRequest.getPassword().equals(imperator.getPassword())) {
-            throw new AuthenticationServiceException("Hasło się nie zgadza!");
+            throw new AuthenticationServiceException(errorMassage);
         }
     }
 
